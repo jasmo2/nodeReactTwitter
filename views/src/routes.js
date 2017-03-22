@@ -9,7 +9,6 @@ export default (
     <Router history={ browserHistory } >
         <Route path="/" component={Header}>
             <IndexRoute component={Main} />
-            <Route path="view/:name" component={ViewItem} />
         </Route>
     </Router>
 )

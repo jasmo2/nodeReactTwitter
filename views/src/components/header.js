@@ -4,7 +4,7 @@ class Header extends Component {
     render(){
         return(
             <div style={{ marginTop: 20 }}>
-                <h1>React Redux Router</h1>
+                <h1>Twitter Comparison</h1>
                 { this.props.children }
             </div>
         )
