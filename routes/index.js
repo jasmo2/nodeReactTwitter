@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { ADD_ITEM } from '../views/src/actions/list_actions';
 
 let router = express.Router();
-
+import apiRoutes from './apiRoutes';
 router.get('/', (req, res) => {
     /*
     Here we are first matching if the current url exists in the react router routes
@@ -66,7 +66,7 @@ router.get('/', (req, res) => {
 	})
 });
 
-
+router.use('/api', apiRoutes);
 /*
 In this function, you can render you html part of the webpage. You can add some meta tags or Opern Graph tags
 using JS variables.
