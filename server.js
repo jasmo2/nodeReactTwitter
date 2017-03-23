@@ -1,15 +1,19 @@
 import express from 'express';
 import router from './routes/index';
 
-let app = express();
-
+const app = express();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 app.use('/bin', express.static('./bin'));
 app.use('/stylesheets', express.static('./public/stylesheets'));
-
 
 app.use('/', router);
 app.use('/view/*', router);
 
-app.listen(3000, function () {
-	console.log('Hello World listening on port 3000!');
+const port = 3000;
+app.listen(port, () => {
+	console.log(`Hello World listening on port ${port}!`);
 });
