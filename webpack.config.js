@@ -1,21 +1,34 @@
 const webpack = require('webpack');
-var nodeExternals = require('webpack-node-externals');
+
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = [
     {
-    entry: './server.js',
+    context: __dirname,
+    entry: {
+      main: [
+        './server.js',
+        './views/src/styles/main.scss'
+      ],
+    },
     output: {
         path: './',
         filename: 'server.bundle.js',
     },
     module: {
-        loaders: [{
+        loaders: [
+          {
             exclude: /node_modules/,
             loader: 'babel-loader',
             query: {
                 presets: ['react', 'es2015', 'stage-1']
             }
-        }]
+          },
+          {
+            test: /\.scss$/,
+            loader: 'sass-loader' // compiles Sass to CSS
+          }
+        ]
     },
     target: 'node',
     externals: [nodeExternals()]
@@ -60,4 +73,4 @@ module.exports = [
         //     }),
         // ]
     }
-]
+];
