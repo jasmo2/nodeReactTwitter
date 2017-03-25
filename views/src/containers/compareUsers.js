@@ -19,6 +19,7 @@ class CompareButton extends Component {
           console.log(response.data);
           this.setState({ loading: false });
           if (response.data.result.length === 0) {
+            this.props.addFollowers([]);
             this.setState({
               loading: false,
               error: 'Users had no common followers',
