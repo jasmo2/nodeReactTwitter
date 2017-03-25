@@ -277,26 +277,6 @@ var client = new Twitter({
   access_token_secret: accessTokenSecret
 });
 
-// router.get('/user/:user_name', (req, res) => { //eslint-disable-line
-// const userName = req.params.user_name;
-// console.log(`req.params.user_name: ${userName}`);
-// client.get('users/show.json', {
-//   screen_name: userName,
-//   profile_image_url: true
-// }).then(response => {
-//   // console.log('~~user~~');
-//   // console.log(response);
-//   // res.json(response);
-//   const { name, description, location, profile_image_url } = response;
-//   const user = { name, description, location, profile_image_url };
-//   res.json({ user });
-// }).catch(e => {
-//   console.log('~~~~~~~error~~~~~');
-//   console.error(e);
-//   res.status(404).json({ error: 'user not found' });
-// });
-// });
-
 router.get('/common-followers/:user_a/:user_b', function (req, res) {
   //eslint-disable-line
   var userNameA = req.params.user_a;
@@ -365,6 +345,10 @@ router.get('/common-followers/:user_a/:user_b', function (req, res) {
       }
 
       res.json({ result: result });
+    }).catch(function (e) {
+      console.log('~~~~~~~error~~~~~');
+      console.error(e);
+      res.status(404).json({ error: 'user not found' });
     });
   }).catch(function (e) {
     console.log('~~~~~~~error~~~~~');
@@ -729,6 +713,7 @@ var CompareButton = function (_Component) {
           console.log(response.data);
           _this2.setState({ loading: false });
           if (response.data.result.length === 0) {
+            _this2.props.addFollowers([]);
             _this2.setState({
               loading: false,
               error: 'Users had no common followers',
