@@ -44,12 +44,13 @@ router.get('/common-followers/:user_a/:user_b', (req, res) => { //eslint-disable
 });
 function errorCatcher(e, res) {
     console.log('~~~~~~~error~~~~~');
-    console.error(e);
     // [ { message: 'Rate limit exceeded', code: 88 } ]
-    if (e[0].code && e[0].code === 88) {
-      res.status(400).json({ error: `Twitter's ${e[0].message}` });
-    } else {
+    try {
+      const twitterError = e[0].message;
+      res.status(400).json({ error: `Twitter's ${twitterError}` });
+    } catch (err) {
+      console.log('404');
       res.status(404).json({ error: 'user not found' });
-    }
+    } 
 }
 export default router;

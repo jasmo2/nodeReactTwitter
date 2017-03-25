@@ -1,4 +1,4 @@
-/*** ***/ (function(modules) { // webpackBootstrap
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -354,11 +354,12 @@ router.get('/common-followers/:user_a/:user_b', function (req, res) {
 });
 function errorCatcher(e, res) {
   console.log('~~~~~~~error~~~~~');
-  console.error(e);
   // [ { message: 'Rate limit exceeded', code: 88 } ]
-  if (e[0].code && e[0].code === 88) {
-    res.status(400).json({ error: 'Twitter\'s ' + e[0].message });
-  } else {
+  try {
+    var twitterError = e[0].message;
+    res.status(400).json({ error: 'Twitter\'s ' + twitterError });
+  } catch (err) {
+    console.log('404');
     res.status(404).json({ error: 'user not found' });
   }
 }
@@ -450,7 +451,7 @@ var FollowerItem = function (_Component) {
     key: "render",
     value: function render() {
       var _props$follower = this.props.follower,
-          profile_image_url = _props$follower.profile_image_url,
+          profile_image_url_https = _props$follower.profile_image_url_https,
           name = _props$follower.name,
           location = _props$follower.location,
           screen_name = _props$follower.screen_name;
@@ -461,7 +462,7 @@ var FollowerItem = function (_Component) {
         _react2.default.createElement(
           "div",
           { className: "col-xs-12 col-sm-3" },
-          _react2.default.createElement("img", { src: profile_image_url, alt: "Scott Stevens", className: "img-responsive img-circle" })
+          _react2.default.createElement("img", { src: profile_image_url_https, alt: "Scott Stevens", className: "img-responsive img-circle" })
         ),
         _react2.default.createElement(
           "div",

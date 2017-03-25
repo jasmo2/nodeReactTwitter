@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class FollowerItem extends Component {
 
   render() {
-    const {profile_image_url, name, location, screen_name} = this.props.follower;
+    const {profile_image_url_https, name, location, screen_name} = this.props.follower;
     return (
       <li className="list-group-item">
         <div className="col-xs-12 col-sm-3">
-          <img src={profile_image_url} alt="Scott Stevens" className="img-responsive img-circle" />
+          <img src={profile_image_url_https} alt="Scott Stevens" className="img-responsive img-circle" />
         </div>
         <div className="col-xs-12 col-sm-9">
           <span className="name">{screen_name}</span><br />

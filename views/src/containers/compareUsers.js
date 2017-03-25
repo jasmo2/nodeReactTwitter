@@ -13,7 +13,7 @@ class CompareButton extends Component {
     compare() {
       const { userA, userB } = this.props.users;
       if (userA && userB) {
-        // this.setState({ loading: true });
+        this.setState({ loading: true });
         axios.get(`/api/common-followers/${userA}/${userB}`)
         .then((response) => {
           console.log(response.data);
