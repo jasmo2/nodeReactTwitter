@@ -11,6 +11,7 @@
     "start": "node node_modules/webpack/bin/webpack.js && node server.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tahnik/react-express-webpack-babel"

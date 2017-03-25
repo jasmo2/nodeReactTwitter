@@ -1,1 +1,5 @@
 node_modules
+
+bin/app\.bundle\.js
+
+server\.bundle\.js
