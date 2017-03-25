@@ -16,31 +16,31 @@ const client = new Twitter({
 });
 
 router.get('/common-followers/:user_a/:user_b', (req, res) => { //eslint-disable-line
-const userNameA = req.params.user_a;
-const userNameB = req.params.user_b;
-client.get('followers/list', {
-  count: 200,
-  screen_name: userNameA, //alexpolymath
-  stringify_ids: true,
-}).then(followerResponseA => {
-  const followersA = followerResponseA.users;
+  const userNameA = req.params.user_a;
+  const userNameB = req.params.user_b;
   client.get('followers/list', {
     count: 200,
-    screen_name: userNameB, //alexpolymath
+    screen_name: userNameA, //alexpolymath
     stringify_ids: true,
-  }).then(followerResponseB => {
-    const followersB = followerResponseB.users;
-    const result = [];
-    for (let followerA of followersA) { //eslint-disable-line
-      for (let followerB of followersB) { //eslint-disable-line
-        if (followerA.id === followerB.id) {
-          result.push(followerA);
+  }).then(followerResponseA => {
+    const followersA = followerResponseA.users;
+    client.get('followers/list', {
+      count: 200,
+      screen_name: userNameB, //alexpolymath
+      stringify_ids: true,
+    }).then(followerResponseB => {
+      const followersB = followerResponseB.users;
+      const result = [];
+      for (let followerA of followersA) { //eslint-disable-line
+        for (let followerB of followersB) { //eslint-disable-line
+          if (followerA.id === followerB.id) {
+            result.push(followerA);
+          }
         }
       }
-    }
-    res.json({ result });
+      res.json({ result });
+    }).catch(e => errorCatcher(e, res));
   }).catch(e => errorCatcher(e, res));
-}).catch(e => errorCatcher(e, res));
 });
 function errorCatcher(e, res) {
     console.log('~~~~~~~error~~~~~');

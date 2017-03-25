@@ -12,6 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
+  "postinstall": "webpack -p --config ./webpack.prod.config.js --progress",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tahnik/react-express-webpack-babel"
