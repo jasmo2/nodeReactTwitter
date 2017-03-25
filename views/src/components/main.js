@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserTwitter from '../containers/userTwitter';
 import CompareButton from '../containers/compareUsers';
-
+import ListFollowers from '../containers/listFollowers'
 class Main extends Component {
 
     render() {
@@ -9,16 +9,21 @@ class Main extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <UserTwitter title={'User A'} userType={'A'}/>
+                <UserTwitter title={'User A'} userType={'A'} />
               </div>
               <div className="col-md-6">
-                <UserTwitter title={'User B'} userType={'B'}/>
+                <UserTwitter title={'User B'} userType={'B'} />
               </div>
             </div>
             <br/><br/><br/>
             <div className="row">
               <div className="col-md-12">
-                <CompareButton title={'compare'}/>
+                <CompareButton title={'compare'} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12">
+                <ListFollowers />
               </div>
             </div>
           </div>

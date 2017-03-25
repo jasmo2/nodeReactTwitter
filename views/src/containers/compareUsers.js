@@ -18,7 +18,7 @@ class CompareButton extends Component {
         .then((response) => {
           console.log(response.data);
           this.setState({ loading: false });
-          // this.props.addFollowers(response.data);
+          this.props.addFollowers(response.data);
         })
         .catch((error) => {
           const err = error.response.data.error;
