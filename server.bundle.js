@@ -346,17 +346,22 @@ router.get('/common-followers/:user_a/:user_b', function (req, res) {
 
       res.json({ result: result });
     }).catch(function (e) {
-      console.log('~~~~~~~error~~~~~');
-      console.error(e);
-      res.status(404).json({ error: 'user not found' });
+      return errorCatcher(e, res);
     });
   }).catch(function (e) {
-    console.log('~~~~~~~error~~~~~');
-    console.error(e);
-    res.status(404).json({ error: 'user not found' });
+    return errorCatcher(e, res);
   });
 });
-
+function errorCatcher(e, res) {
+  console.log('~~~~~~~error~~~~~');
+  console.error(e);
+  // [ { message: 'Rate limit exceeded', code: 88 } ]
+  if (e[0].code && e[0].code === 88) {
+    res.status(400).json({ error: 'Twitter\'s ' + e[0].message });
+  } else {
+    res.status(404).json({ error: 'user not found' });
+  }
+}
 exports.default = router;
 
 /***/ }),
