@@ -12,8 +12,6 @@ class FollowersList extends Component {
     }
     return (
       <div className="container">
-
-
         <div className="row">
           <div className="col-xs-12 col-sm-offset-1 col-sm-10">
             <div className="panel panel-default">
@@ -21,8 +19,8 @@ class FollowersList extends Component {
                 <span className="title">Common Followers</span>
               </div>
               <ul className="list-group" id="contact-list">
-                { followers.result.map(follower => (
-                     <FollowerItem follower={follower} />
+                { followers.map(follower => (
+                     <FollowerItem follower={follower} key={follower.id_str} />
                   ))
                 }
               </ul>

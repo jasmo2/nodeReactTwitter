@@ -18,7 +18,15 @@ class CompareButton extends Component {
         .then((response) => {
           console.log(response.data);
           this.setState({ loading: false });
-          this.props.addFollowers(response.data);
+          if (response.data.result.length === 0) {
+            this.setState({
+              loading: false,
+              error: 'Users had no common followers',
+              show: true,
+            });
+          } else {
+            this.props.addFollowers(response.data.result);
+          }
         })
         .catch((error) => {
           const err = error.response.data.error;
@@ -55,7 +63,7 @@ class CompareButton extends Component {
 
 const mapStateToProps = (state) => {
   const { users } = state.users;
-  console.log(`CompareButton usersState: ${JSON.stringify(users)}`);
+  // console.log(`CompareButton usersState: ${JSON.stringify(users)}`);
   return { users };
 };
 
