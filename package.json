@@ -4,6 +4,7 @@
   "description": "Boilerplate for ReactJS project with ExpressJS server. It uses webpack and babel",
   "main": "server.bundle.js",
   "scripts": {
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
     "front-dev": "node node_modules/webpack/bin/webpack.js --watch --color",
     "dev": "node node_modules/nodemon/bin/nodemon.js server.bundle.js",
     "debug": "node node_modules/node-inspector/bin/node-debug.js server.bundle.js",
