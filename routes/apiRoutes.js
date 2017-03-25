@@ -39,16 +39,17 @@ client.get('followers/list', {
       }
     }
     res.json({ result });
-  }).catch(e => {
+  }).catch(e => errorCatcher(e, res));
+}).catch(e => errorCatcher(e, res));
+});
+function errorCatcher(e, res) {
     console.log('~~~~~~~error~~~~~');
     console.error(e);
-    res.status(404).json({ error: 'user not found' });
-  });
-}).catch(e => {
-  console.log('~~~~~~~error~~~~~');
-  console.error(e);
-  res.status(404).json({ error: 'user not found' });
-});
-});
-
+    // [ { message: 'Rate limit exceeded', code: 88 } ]
+    if (e[0].code && e[0].code === 88) {
+      res.status(400).json({ error: `Twitter's ${e[0].message}` });
+    } else {
+      res.status(404).json({ error: 'user not found' });
+    }
+}
 export default router;
