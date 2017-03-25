@@ -5,8 +5,9 @@
   "main": "server.bundle.js",
   "scripts": {
     "front-dev": "node node_modules/webpack/bin/webpack.js --watch --color",
-    "dev": "node node_modules/nodemon/bin/nodemon.js --debug server.bundle.js",
-    "start": "node server.bundle.js",
+    "dev": "node node_modules/nodemon/bin/nodemon.js server.bundle.js",
+    "debug": "node node_modules/node-inspector/bin/node-debug.js server.bundle.js",
+    "start": "node node_modules/webpack/bin/webpack.js && node server.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -51,6 +52,7 @@
   "devDependencies": {
     "eslint-config-rallycoding": "^3.2.0",
     "eslint-rallycoding": "^1.2.0",
+    "node-inspector": "^0.12.10",
     "nodemon": "^1.11.0",
     "webpack-node-externals": "^1.2.0"
   }
