@@ -1,1 +1,1 @@
-web: node server.bundle.js
+web: npm start

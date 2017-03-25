@@ -9,10 +9,9 @@
     "dev": "node node_modules/nodemon/bin/nodemon.js server.bundle.js",
     "debug": "node node_modules/node-inspector/bin/node-debug.js server.bundle.js",
     "start": "node node_modules/webpack/bin/webpack.js && node server.bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
-  "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
-  "postinstall": "webpack -p --config ./webpack.prod.config.js --progress",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tahnik/react-express-webpack-babel"
@@ -50,13 +49,13 @@
     "sweetalert-react": "^0.4.9",
     "twitter": "^1.7.0",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack-dev-server": "^2.4.1",
+    "webpack-node-externals": "^1.2.0"
   },
   "devDependencies": {
     "eslint-config-rallycoding": "^3.2.0",
     "eslint-rallycoding": "^1.2.0",
     "node-inspector": "^0.12.10",
-    "nodemon": "^1.11.0",
-    "webpack-node-externals": "^1.2.0"
+    "nodemon": "^1.11.0"
   }
 }
