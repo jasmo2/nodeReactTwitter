@@ -1,15 +1,18 @@
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+var path = require('path')
+
+var root = path.join(__dirname, './')
 
 
 module.exports = [
     {
     context: __dirname,
     entry: {
-      main: './server.js',
+      main: path.resolve('./server.js'),
     },
     output: {
-        path: './',
+        path: root,
         filename: 'server.bundle.js',
     },
     module: {
@@ -36,7 +39,7 @@ module.exports = [
           './views/src/styles/main.scss'
         ],
         output: {
-            path: './bin',
+            path: path.resolve('./bin'),
             filename: 'app.bundle.js',
         },
         module: {
